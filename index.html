@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calton View Café — Breakfast, Lunch & Tea off the Royal Mile, Edinburgh</title>
+<meta name="description" content="A cosy, women-owned café at 9 Jeffrey Street, just off the Royal Mile. All-day breakfast, waffles, paninis and locally roasted coffee with the best latte art in the Old Town. Open daily 8am–5pm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=DM+Sans:wght@400;500;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CALTON VIEW CAFÉ — website concept
+   To swap photos: replace the URLs in the IMG object (script, bottom)
+   with the café's own high-res photos.
+   ============================================================ */
+:root{
+  --sky:#8fd0e0;        /* storefront blue */
+  --sky-soft:#d9f0f5;
+  --sky-deep:#2f7f95;
+  --cream:#fbf5ea;
+  --paper:#fffaf2;
+  --espresso:#2e1c13;
+  --cocoa:#5a3a28;
+  --toffee:#c7742d;     /* logo caramel */
+  --cherry:#c3412f;     /* red cups */
+  --line:rgba(46,28,19,.12);
+  --radius:22px;
+  --shadow:0 18px 40px -18px rgba(46,28,19,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",system-ui,sans-serif;color:var(--espresso);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:800;line-height:1.05;letter-spacing:-.02em}
+.script{font-family:"Caveat",cursive;color:var(--toffee);font-size:1.6rem;line-height:1}
+.wrap{width:min(1180px,92vw);margin:0 auto}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sky-deep)}
+.eyebrow::before{content:"";width:22px;height:2px;background:currentColor}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.95rem 1.5rem;border-radius:999px;font-weight:700;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s;border:2px solid var(--espresso)}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--espresso);color:var(--cream);box-shadow:4px 4px 0 var(--toffee)}
+.btn-dark:hover{box-shadow:6px 6px 0 var(--toffee)}
+.btn-light{background:var(--paper);color:var(--espresso)}
+.gingham{background-color:var(--paper);background-image:
+  linear-gradient(90deg,rgba(143,208,224,.45) 50%,transparent 50%),
+  linear-gradient(rgba(143,208,224,.45) 50%,transparent 50%);
+  background-size:28px 28px}
+.img-fallback{background:linear-gradient(135deg,var(--sky-soft),var(--sky))}
+
+/* ---------- NAV ---------- */
+.topbar{background:var(--espresso);color:var(--cream);font-size:.85rem;text-align:center;padding:.5rem 1rem}
+.topbar b{color:var(--sky)}
+nav{position:sticky;top:0;z-index:50;background:rgba(251,245,234,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.logo-badge{width:52px;height:52px;border-radius:50%;background:var(--sky);display:grid;place-items:center;border:2px solid var(--espresso);box-shadow:3px 3px 0 var(--toffee)}
+.logo-badge span{font-family:"Caveat",cursive;color:var(--cocoa);font-size:1.05rem;line-height:.8;text-align:center;font-weight:600}
+.logo-text{font-family:"Fraunces",serif;font-weight:800;font-size:1.3rem;line-height:1}
+.logo-text small{display:block;font-family:"DM Sans";font-weight:500;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cocoa);margin-top:.2rem}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{text-decoration:none;font-weight:500;font-size:.95rem;position:relative}
+.nav-links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--toffee);transition:width .25s}
+.nav-links a:not(.btn):hover::after{width:100%}
+.nav-links .btn{padding:.6rem 1.1rem;font-size:.9rem}
+.burger{display:none;background:none;border:0;cursor:pointer;width:44px;height:44px}
+.burger span{display:block;width:26px;height:2px;background:var(--espresso);margin:6px auto;transition:.3s}
+
+/* ---------- HERO ---------- */
+.hero{padding:4.5rem 0 5rem;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:4rem;align-items:center}
+.hero h1{font-size:clamp(2.8rem,6vw,5.2rem);margin:1.1rem 0 1.4rem}
+.hero h1 em{font-style:italic;font-weight:600;color:var(--sky-deep)}
+.hero p.lead{font-size:1.15rem;color:var(--cocoa);max-width:34rem}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;margin:2rem 0 2.4rem}
+.rating{display:flex;align-items:center;gap:1rem;padding-top:1.6rem;border-top:1px dashed var(--line)}
+.stars{color:var(--toffee);font-size:1.2rem;letter-spacing:2px}
+.rating strong{font-family:"Fraunces";font-size:2rem}
+.rating small{display:block;color:var(--cocoa);font-size:.85rem}
+.hero-art{position:relative;height:560px}
+.hero-art .main{position:absolute;inset:0 0 60px 40px;border-radius:200px 200px var(--radius) var(--radius);overflow:hidden;border:3px solid var(--espresso);box-shadow:var(--shadow)}
+.hero-art .main img{width:100%;height:100%;object-fit:cover}
+.hero-art .float{position:absolute;left:0;bottom:0;width:220px;height:220px;border-radius:50%;overflow:hidden;border:6px solid var(--cream);box-shadow:var(--shadow);animation:bob 6s ease-in-out infinite}
+.hero-art .float img{width:100%;height:100%;object-fit:cover}
+.hero-art .sticker{position:absolute;right:-10px;top:30px;background:var(--cherry);color:var(--cream);width:130px;height:130px;border-radius:50%;display:grid;place-items:center;text-align:center;font-family:"Fraunces";font-weight:600;font-size:.95rem;line-height:1.15;transform:rotate(12deg);border:2px dashed rgba(255,255,255,.6);outline:6px solid var(--cherry)}
+@keyframes bob{50%{transform:translateY(-12px)}}
+
+/* ---------- MARQUEE ---------- */
+.marquee{background:var(--sky);border-block:2px solid var(--espresso);overflow:hidden;padding:1rem 0}
+.marquee-track{display:flex;gap:3rem;width:max-content;animation:scroll 32s linear infinite;font-family:"Fraunces";font-size:1.5rem;font-weight:600;font-style:italic}
+.marquee-track span::after{content:"✦";margin-left:3rem;color:var(--cream)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ---------- SECTIONS ---------- */
+section{padding:6rem 0}
+.section-head{text-align:center;max-width:44rem;margin:0 auto 3.5rem}
+.section-head h2{font-size:clamp(2.2rem,4.5vw,3.5rem);margin:.8rem 0 1rem}
+.section-head p{color:var(--cocoa);font-size:1.08rem}
+
+/* about */
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-photos{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.about-photos div{border-radius:var(--radius);overflow:hidden;border:2px solid var(--espresso);aspect-ratio:3/4}
+.about-photos div:nth-child(2){margin-top:3rem}
+.about-photos img{width:100%;height:100%;object-fit:cover}
+.about h2{font-size:clamp(2.2rem,4vw,3.2rem);margin:.8rem 0 1.4rem}
+.about p{color:var(--cocoa);margin-bottom:1rem;font-size:1.05rem}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.pillar{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:1.1rem 1.2rem}
+.pillar b{display:block;font-family:"Fraunces";font-size:1.1rem;margin-bottom:.2rem}
+.pillar span{font-size:.9rem;color:var(--cocoa)}
+
+/* favourites */
+.favs{background:var(--espresso);color:var(--cream)}
+.favs .section-head p{color:rgba(251,245,234,.75)}
+.favs .eyebrow{color:var(--sky)}
+.fav-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+.fav{background:var(--cream);color:var(--espresso);border-radius:var(--radius);overflow:hidden;transition:transform .3s}
+.fav:hover{transform:translateY(-6px) rotate(-.5deg)}
+.fav .ph{aspect-ratio:1;overflow:hidden}
+.fav .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.fav:hover .ph img{transform:scale(1.06)}
+.fav .body{padding:1.2rem 1.3rem 1.4rem}
+.fav h3{font-size:1.25rem;display:flex;justify-content:space-between;gap:.5rem}
+.fav h3 span{color:var(--toffee)}
+.fav p{font-size:.9rem;color:var(--cocoa);margin-top:.4rem}
+
+/* menu */
+.menu{position:relative}
+.menu-card{background:var(--paper);border:2px solid var(--espresso);border-radius:28px;box-shadow:8px 8px 0 var(--sky);padding:2.5rem;max-width:1000px;margin:0 auto}
+.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-bottom:2.4rem}
+.tab{border:2px solid var(--espresso);background:transparent;padding:.6rem 1.2rem;border-radius:999px;font:700 .9rem "DM Sans";cursor:pointer;transition:.2s;color:var(--espresso)}
+.tab[aria-selected="true"],.tab:hover{background:var(--espresso);color:var(--cream)}
+.menu-panel{display:none;grid-template-columns:1fr 1fr;gap:2.2rem 3.5rem}
+.menu-panel.active{display:grid;animation:fade .4s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+.menu-group h3{font-size:1.5rem;margin-bottom:.4rem;color:var(--sky-deep)}
+.menu-group .note{font-size:.85rem;color:var(--cocoa);margin-bottom:1rem;font-style:italic}
+.item{padding:.7rem 0;border-bottom:1px dashed var(--line)}
+.item-row{display:flex;align-items:baseline;gap:.6rem}
+.item-row b{font-weight:700}
+.item-row .dots{flex:1;border-bottom:2px dotted rgba(46,28,19,.25);transform:translateY(-4px)}
+.item-row .price{font-family:"Fraunces";font-weight:600}
+.item small{display:block;color:var(--cocoa);font-size:.85rem;margin-top:.15rem}
+.veg{display:inline-block;font-size:.65rem;font-weight:700;background:#dcefd6;color:#2f6b2a;border-radius:6px;padding:.05rem .35rem;margin-left:.35rem;vertical-align:middle}
+.menu-foot{text-align:center;margin-top:2rem;font-size:.9rem;color:var(--cocoa)}
+
+/* gallery */
+.gallery-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:180px;gap:1rem}
+.gallery-grid div{border-radius:18px;overflow:hidden;position:relative}
+.gallery-grid img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gallery-grid div:hover img{transform:scale(1.05)}
+.g1{grid-column:span 3;grid-row:span 2}.g2{grid-column:span 3}.g3{grid-column:span 2}.g4{grid-column:span 1}.g5{grid-column:span 2;grid-row:span 1}.g6{grid-column:span 4}
+.ig-cta{text-align:center;margin-top:2.5rem}
+
+/* community */
+.community .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:center}
+.community h2{font-size:clamp(2.2rem,4vw,3.2rem);margin:.8rem 0 1.2rem}
+.community p{color:var(--cocoa);margin-bottom:1rem}
+.events{display:grid;gap:1rem}
+.event{display:flex;gap:1.2rem;align-items:center;background:var(--paper);border:2px solid var(--espresso);border-radius:20px;padding:1.2rem 1.4rem;transition:transform .2s}
+.event:hover{transform:translateX(6px)}
+.event .ico{flex:none;width:58px;height:58px;border-radius:16px;display:grid;place-items:center;font-size:1.7rem;background:var(--sky-soft)}
+.event:nth-child(2) .ico{background:#fbe2d4}.event:nth-child(3) .ico{background:#f3e8c9}
+.event b{font-family:"Fraunces";font-size:1.2rem;display:block}
+.event span{font-size:.92rem;color:var(--cocoa)}
+
+/* reviews */
+.reviews{background:var(--sky-soft)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.rev{background:var(--paper);border-radius:var(--radius);padding:2rem;border:1px solid var(--line);position:relative}
+.rev::before{content:"“";position:absolute;top:-.6rem;left:1.4rem;font-family:"Fraunces";font-size:5rem;color:var(--toffee);line-height:1}
+.rev p{font-family:"Fraunces";font-size:1.15rem;font-style:italic;margin:1rem 0 1.2rem;line-height:1.45}
+.rev cite{font-style:normal;font-weight:700;font-size:.9rem}
+.rev cite small{display:block;font-weight:400;color:var(--cocoa)}
+.badges{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:3rem}
+.badge{background:var(--paper);border:2px solid var(--espresso);border-radius:999px;padding:.7rem 1.3rem;font-weight:700;display:flex;gap:.6rem;align-items:center}
+.badge em{font-style:normal;font-family:"Fraunces";color:var(--toffee);font-size:1.2rem}
+
+/* visit */
+.visit .wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:3rem;align-items:stretch}
+.visit-card{background:var(--espresso);color:var(--cream);border-radius:28px;padding:2.8rem}
+.visit-card h2{font-size:clamp(2rem,4vw,3rem);margin:.6rem 0 1.6rem}
+.visit-card .eyebrow{color:var(--sky)}
+.info{display:grid;gap:1.4rem;margin-bottom:2rem}
+.info > div{display:flex;gap:1rem}
+.info .i{flex:none;width:42px;height:42px;border-radius:12px;background:rgba(143,208,224,.18);display:grid;place-items:center;font-size:1.2rem}
+.info b{display:block;font-family:"Fraunces";font-size:1.1rem}
+.info span{color:rgba(251,245,234,.78);font-size:.95rem}
+.amen{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.amen span{font-size:.8rem;border:1px solid rgba(251,245,234,.3);border-radius:999px;padding:.35rem .8rem}
+.visit-card .btn-light{border-color:var(--cream)}
+.map{border-radius:28px;overflow:hidden;border:2px solid var(--espresso);min-height:460px;box-shadow:8px 8px 0 var(--sky)}
+.map iframe{width:100%;height:100%;border:0;min-height:460px}
+
+/* footer */
+footer{background:var(--espresso);color:var(--cream);padding:4rem 0 2rem}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:3rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(251,245,234,.15)}
+footer h4{font-family:"Fraunces";font-size:1.1rem;margin-bottom:1rem;color:var(--sky)}
+footer p,footer li{color:rgba(251,245,234,.75);font-size:.95rem}
+footer ul{list-style:none;display:grid;gap:.5rem}
+footer a{text-decoration:none}
+footer a:hover{color:var(--sky)}
+.socials{display:flex;gap:.7rem;margin-top:1.2rem}
+.socials a{width:42px;height:42px;border-radius:50%;border:1px solid rgba(251,245,234,.3);display:grid;place-items:center;transition:.2s}
+.socials a:hover{background:var(--sky);color:var(--espresso);border-color:var(--sky)}
+.socials svg{width:18px;height:18px;fill:currentColor}
+.copy{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:1.6rem;font-size:.82rem;color:rgba(251,245,234,.55)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:980px){
+  .hero .wrap,.about .wrap,.community .wrap,.visit .wrap{grid-template-columns:1fr;gap:3rem}
+  .hero-art{height:460px;max-width:520px;margin:0 auto;width:100%}
+  .fav-grid{grid-template-columns:repeat(2,1fr)}
+  .rev-grid{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr 1fr}
+  .about-photos{order:2}
+}
+@media (max-width:820px){
+  .burger{display:block}
+  .nav-links{position:fixed;inset:76px 0 auto 0;flex-direction:column;background:var(--cream);padding:2rem;gap:1.4rem;border-bottom:2px solid var(--espresso);transform:translateY(-130%);transition:transform .35s,visibility .35s;z-index:-1;visibility:hidden}
+  .nav-links.open{transform:none;visibility:visible}
+  .hero-art{height:380px}
+  .menu-panel.active{grid-template-columns:1fr}
+  .menu-card{padding:1.6rem}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+  .g1,.g2,.g3,.g4,.g5,.g6{grid-column:span 1;grid-row:span 1}
+  .g1{grid-column:span 2;grid-row:span 2}
+  section{padding:4.5rem 0}
+}
+@media (max-width:520px){
+  .fav-grid{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr}
+  .hero-art .float{width:150px;height:150px}
+  .hero-art .sticker{width:105px;height:105px;font-size:.8rem}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="topbar">Open every day <b>8am – 5pm</b> · 9 Jeffrey Street, just off the Royal Mile</div>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Calton View Café home">
+      <div class="logo-badge"><span>Calton<br>View</span></div>
+      <div class="logo-text">Calton View<small>Café · Edinburgh</small></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#community">Events</a></li>
+      <li><a href="#visit" class="btn btn-dark">Find Us</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Old Town · Edinburgh</span>
+      <h1>Breakfast, lunch &amp; tea with a <em>view</em> of Calton Hill</h1>
+      <p class="lead">A little blue café tucked just off the Royal Mile. We serve hearty Scottish breakfasts, golden waffles and locally roasted single-origin coffee, poured with latte art that's become a bit of a local legend.</p>
+      <div class="hero-ctas">
+        <a href="#menu" class="btn btn-dark">See the Menu →</a>
+        <a href="#visit" class="btn btn-light">Plan Your Visit</a>
+      </div>
+      <div class="rating">
+        <strong>4.8</strong>
+        <div>
+          <div class="stars">★★★★★</div>
+          <small>from 740+ Google reviews</small>
+        </div>
+      </div>
+    </div>
+    <div class="hero-art reveal">
+      <div class="main img-fallback"><img data-img="storefront" alt="The sky-blue shopfront of Calton View Café on Jeffrey Street"></div>
+      <div class="float img-fallback"><img data-img="latte" alt="Latte art and a croissant at Calton View Café"></div>
+      <div class="sticker">Women-<br>owned &amp;<br>proudly<br>local</div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Full Scottish Breakfast</span><span>Chicken &amp; Waffles</span><span>Eggs Royale</span><span>Locally Roasted Coffee</span><span>Bonnie Black Forest</span><span>Dog Friendly</span><span>Haggis Highlander</span><span>Matcha Lattes</span>
+    <span>Full Scottish Breakfast</span><span>Chicken &amp; Waffles</span><span>Eggs Royale</span><span>Locally Roasted Coffee</span><span>Bonnie Black Forest</span><span>Dog Friendly</span><span>Haggis Highlander</span><span>Matcha Lattes</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-photos reveal">
+      <div class="img-fallback"><img data-img="benedict" alt="Eggs Benedict with salad"></div>
+      <div class="img-fallback"><img data-img="salmon" alt="Poached eggs with smoked salmon"></div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Our Story</span>
+      <h2>A local café in a city full of chains</h2>
+      <p>Calton View is a small, independent, women-owned café with a big heart. We pair local and international favourites with the best Scottish ingredients we can find, all hand-picked and sourced from across the country.</p>
+      <p>Our coffee is a locally and ethically roasted single-origin blend, made with farm-fresh organic Scottish milk. Grab a seat by the window or at one of our outdoor tables when the sun's out, and settle in.</p>
+      <p class="script">Come as a visitor, leave as a regular ♡</p>
+      <div class="pillars">
+        <div class="pillar"><b>Scottish produce</b><span>Free-range eggs, Lorne sausage, haggis &amp; artisan sourdough</span></div>
+        <div class="pillar"><b>Locally roasted</b><span>Single-origin coffee &amp; organic milk</span></div>
+        <div class="pillar"><b>Everyone welcome</b><span>Veggie &amp; vegan options, dogs and LGBTQ+ friendly</span></div>
+        <div class="pillar"><b>Step-free</b><span>Level access and an accessible toilet</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAVOURITES -->
+<section class="favs">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Guest Favourites</span>
+      <h2>The plates everyone talks about</h2>
+      <p>These are the dishes our guests mention again and again, and the ones you'll see all over Instagram.</p>
+    </div>
+    <div class="fav-grid">
+      <article class="fav reveal"><div class="ph img-fallback"><img data-img="fullbreakfast" alt="Full Scottish breakfast"></div><div class="body"><h3>Full Breakfast <span>£12.95</span></h3><p>Haggis, Lorne sausage, bacon, egg, hash brown, grilled tomato &amp; mushroom, potato scone, beans &amp; toast.</p></div></article>
+      <article class="fav reveal"><div class="ph img-fallback"><img data-img="benedict2" alt="Eggs Benedict"></div><div class="body"><h3>Eggs Benedict <span>£11.50</span></h3><p>Toasted sourdough, poached free-range eggs and silky hollandaise with crispy bacon.</p></div></article>
+      <article class="fav reveal"><div class="ph img-fallback"><img data-img="salmon" alt="Smoked salmon avocado toast"></div><div class="body"><h3>Smoked Salmon Toast <span>£11.95</span></h3><p>Smashed avocado on toasted ciabatta, topped with eggs and smoked salmon.</p></div></article>
+      <article class="fav reveal"><div class="ph img-fallback"><img data-img="latte" alt="Cappuccino with latte art"></div><div class="body"><h3>Cappuccino <span>£3.60</span></h3><p>Our house roast, finished with the latte art that keeps people coming back.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu gingham" id="menu">
+  <div class="wrap">
+    <div class="section-head reveal" style="background:var(--cream);padding:2rem;border-radius:24px;border:2px solid var(--espresso)">
+      <span class="eyebrow">The Menu</span>
+      <h2>All-day breakfast &amp; lunch</h2>
+      <p>Free-range eggs with artisan sourdough, served all day. <span class="veg">V</span> marks vegetarian dishes.</p>
+    </div>
+    <div class="menu-card reveal">
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" data-tab="breakfast">Breakfast</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="lunch">Lunch</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="sweet">Waffles &amp; Pancakes</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="drinks">Coffee &amp; Drinks</button>
+      </div>
+      <div id="panels"></div>
+      <p class="menu-foot">Please let our team know about any allergies. Takeaway available. Prices may change, so check in store.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Gallery</span>
+      <h2>A peek inside</h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="g1 img-fallback"><img data-img="sharing" alt="Two full breakfasts shared on a table"></div>
+      <div class="g2 img-fallback"><img data-img="terrace" alt="Eggs Benedict at an outdoor table in the sun"></div>
+      <div class="g3 img-fallback"><img data-img="latte" alt="Latte art"></div>
+      <div class="g4 img-fallback"><img data-img="salmon" alt="Smoked salmon eggs"></div>
+      <div class="g5 img-fallback"><img data-img="fullbreakfast" alt="Full breakfast plate"></div>
+      <div class="g6 img-fallback"><img data-img="storefront" alt="Café shopfront"></div>
+    </div>
+    <div class="ig-cta"><a class="btn btn-dark" href="https://www.instagram.com/calton.view/" target="_blank" rel="noopener">Follow @calton.view on Instagram</a></div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="community" id="community">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Community &amp; Events</span>
+      <h2>More than a coffee stop</h2>
+      <p>After hours, Calton View becomes a cosy home for Edinburgh's creative and community groups. We've hosted women's social clubs, baking workshops and slow, cosy evenings together.</p>
+      <p>Want to run a workshop, meet-up or private gathering? We'd love to hear from you.</p>
+      <a href="https://www.instagram.com/calton.view/" target="_blank" rel="noopener" class="btn btn-dark" style="margin-top:1rem">Enquire about hosting</a>
+    </div>
+    <div class="events reveal">
+      <div class="event"><div class="ico">🕯️</div><div><b>Wind Down Wednesdays</b><span>A slower, cosier midweek evening to unwind with friends.</span></div></div>
+      <div class="event"><div class="ico">🎂</div><div><b>Baking &amp; Bento Cake Workshops</b><span>Hands-on sessions with local Edinburgh bakers.</span></div></div>
+      <div class="event"><div class="ico">💬</div><div><b>Community Meet-ups</b><span>A welcoming space for local clubs and social groups.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Kind Words</span>
+      <h2>What our guests say</h2>
+    </div>
+    <div class="rev-grid">
+      <figure class="rev reveal"><p>Service was superb… the server was great at caring about us and made beautiful latte art.</p><cite>Mira B.<small>Google review</small></cite></figure>
+      <figure class="rev reveal"><p>Servers were smiling, quick, friendly in every way… The food is so good!!!</p><cite>Dana B.<small>Google review</small></cite></figure>
+      <figure class="rev reveal"><p>In a city centre full of chain cafes… this cafe is a breath of fresh air.</p><cite>Tali<small>Google review</small></cite></figure>
+    </div>
+    <div class="badges reveal">
+      <div class="badge"><em>4.8★</em> Google · 740+ reviews</div>
+      <div class="badge"><em>4.7★</em> Tripadvisor</div>
+      <div class="badge"><em>✓</em> Listed on edinburgh.org</div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="visit" id="visit">
+  <div class="wrap">
+    <div class="visit-card reveal">
+      <span class="eyebrow">Visit Us</span>
+      <h2>Find the little blue café</h2>
+      <div class="info">
+        <div><div class="i">📍</div><div><b>9 Jeffrey Street</b><span>Edinburgh EH1 1DR, a minute's walk from the Royal Mile and Waverley Station</span></div></div>
+        <div><div class="i">🕗</div><div><b>Open 7 days</b><span>8:00am – 5:00pm, breakfast served all day</span></div></div>
+        <div><div class="i">☕</div><div><b>Walk-ins welcome</b><span>We're cosy, so come early at weekends. Takeaway is always available.</span></div></div>
+      </div>
+      <div class="amen">
+        <span>🐾 Dog friendly</span><span>♿ Step-free access</span><span>📶 Free Wi-Fi</span><span>🌱 Vegan options</span><span>☀️ Outdoor tables</span><span>💳 Card &amp; cash</span>
+      </div>
+      <a class="btn btn-light" href="https://www.google.com/maps/dir/?api=1&destination=Calton+View+Cafe+9+Jeffrey+St+Edinburgh+EH1+1DR" target="_blank" rel="noopener">Get Directions →</a>
+    </div>
+    <div class="map reveal">
+      <iframe title="Map showing Calton View Café, 9 Jeffrey Street, Edinburgh" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Calton+View+Cafe,+9+Jeffrey+St,+Edinburgh+EH1+1DR&z=16&output=embed"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#top" class="logo"><div class="logo-badge"><span>Calton<br>View</span></div><div class="logo-text" style="color:var(--cream)">Calton View<small style="color:var(--sky)">Café · Edinburgh</small></div></a>
+        <p style="margin-top:1.2rem;max-width:22rem">Breakfast, lunch &amp; tea in Edinburgh's Old Town. Independent, women-owned and proudly local.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/calton.view/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 4.6a5.2 5.2 0 100 10.4 5.2 5.2 0 000-10.4zm0 8.6a3.4 3.4 0 110-6.8 3.4 3.4 0 010 6.8zm5.4-9.9a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/></svg></a>
+          <a href="https://www.facebook.com/caltonviewcafe/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.2h2.8V22h3.4z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <ul><li>Monday – Sunday</li><li>8:00am – 5:00pm</li><li style="margin-top:.6rem">All-day breakfast</li></ul>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul><li><a href="#about">Our Story</a></li><li><a href="#menu">Menu</a></li><li><a href="#community">Events</a></li><li><a href="#visit">Find Us</a></li></ul>
+      </div>
+    </div>
+    <div class="copy"><span>© <span id="yr"></span> Calton View Café · 9 Jeffrey Street, Edinburgh EH1 1DR</span><span>Made with ♡ in the Old Town</span></div>
+  </div>
+</footer>
+
+<script>
+/* ---------- PHOTOS (swap for the café's own high-res images) ---------- */
+const IMG = {
+  storefront:   "https://media.edinburgh.org/wp-content/uploads/2024/12/17022226/thumb_53294_point_of_interest_bigger.jpeg",
+  salmon:       "https://itin-dev.wanderlogstatic.com/freeImage/qpyhtrKRGXo7snFfeFesmAM4mysu5Opb",
+  fullbreakfast:"https://itin-dev.wanderlogstatic.com/freeImage/UwPhWukgIsuMd22ReZhHSBuMqtCM0Fqb",
+  sharing:      "https://itin-dev.wanderlogstatic.com/freeImage/nY2QGKC20ldjkDlow9sJZkh2lDQQqZHv",
+  terrace:      "https://itin-dev.wanderlogstatic.com/freeImage/lcA2QSbwbOxk9G20LaegcRSqEF91kP0R",
+  benedict:     "https://itin-dev.wanderlogstatic.com/freeImage/cOqedph3LccmSq7ZTNuY2dJo7qgwzqD1",
+  benedict2:    "https://itin-dev.wanderlogstatic.com/freeImage/cOqedph3LccmSq7ZTNuY2dJo7qgwzqD1",
+  latte:        "https://itin-dev.wanderlogstatic.com/freeImage/M0KffrXxNoKBWbPEnoADiGpgfyvmdXbe"
+};
+document.querySelectorAll("img[data-img]").forEach(img=>{
+  img.src = IMG[img.dataset.img];
+  img.loading = "lazy";
+  img.onerror = ()=>{ img.style.display="none"; };  // soft blue fallback shows instead
+});
+
+/* ---------- MENU DATA (from the café's in-store menu, 2026) ---------- */
+const MENU = {
+  breakfast:[
+    {t:"All-Day Breakfast",n:"International recipes with locally sourced ingredients, organic free-range eggs and artisan sourdough.",items:[
+      ["Vegetarian","10.95","Fried eggs, veggie sausage, hash brown, potato scone, grilled tomato & mushroom, beans, toast & butter",1],
+      ["American","11.50","Scrambled eggs, bacon, toast & butter"],
+      ["Highlander","11.95","Scrambled eggs, smoked salmon, toast & butter"],
+      ["Full Breakfast","12.95","Haggis, link & square sausage, bacon, eggs, hash brown, grilled tomato & mushroom, potato scone, beans & toast"]]},
+    {t:"Poached Eggs",n:"Toasted sourdough, poached organic eggs & hollandaise with your choice of topping.",items:[
+      ["Eggs Florentine","11.00","Spinach",1],["Eggs Benedict","11.50","Bacon"],["Eggs Royale","11.95","Smoked salmon"]]},
+    {t:"Avocado Toast",n:"Our very own avocado blend on toasted ciabatta, with toppings & pomegranate sauce.",items:[
+      ["Poached Egg","11.50","Organic eggs, dill, feta or halloumi",1],["Mediterranean","11.50","Feta, sun-dried tomatoes, peppers",1],["Smoked Salmon","11.95","Eggs & smoked salmon"]]},
+    {t:"Make Your Own Roll",n:"Bacon, sausage, square sausage, haggis, hash brown, egg, potato scone, cheese, tomato, mushroom.",items:[
+      ["Peckish","5.50","1 topping"],["Hungry","6.50","2 toppings"],["Famished","7.50","3 toppings"]]}
+  ],
+  lunch:[
+    {t:"Burger & Chips",n:"170g patties grilled to perfection.",items:[
+      ["Edinburgher","11.95","Burger patty with lettuce, mayo & cheese"],
+      ["Calton Greens","11.95","Veggie patty, avocado, mayo, lettuce, tomato & cheese",1],
+      ["Kilted Clucker","12.95","Southern-style battered chicken breast, lettuce, mayo, tomato & cheese"],
+      ["Burgergasm","13.95","Burger patty, bacon, crispy onion, burger sauce, sun-dried tomatoes & cheese"]]},
+    {t:"Panini / Wrap · £10.50",n:"Served with salad & crisps. Takeaway & à la carte £7.50.",items:[
+      ["Peri-Peri Chicken","10.50"],["Pesto Chicken","10.50"],["Chicken Fajita","10.50"],["Chicken Avocado","10.50"],["Chicken, Bacon & Tomato","10.50"],["Tuna Mayo & Red Onion","10.50"],["Falafel, Hummus & Roasted Veg","10.50","",1]]},
+    {t:"Chips",items:[["Plain","3.95","",1],["Loaded","6.50","Bacon bits & cheese sauce"]]}
+  ],
+  sweet:[
+    {t:"Waffles & Pancakes",n:"Scottish-style pancakes or waffles with a twist.",items:[
+      ["Edinberry Delight","10.50","Blueberry compote, white cheese, custard creams & dark chocolate drizzle",1],
+      ["Bonnie Black Forest","10.50","Sour cherries, blackberries, sweet cherries, blueberries & blackcurrants, chocolate spread & toffee drizzle",1],
+      ["Braw Berry","10.50","Strawberries, white cheese, crushed shortbread & caramel drizzle",1]]},
+    {t:"Sweet Meets Savoury",items:[
+      ["Chicken & Waffles","11.00","Golden fried chicken & maple syrup"],
+      ["Maple Bacon","11.00","Crispy bacon & maple syrup"]]},
+    {t:"Smoothies",items:[
+      ["Berry Energizer","5.95","Blackberry, blackcurrant & strawberry"],["Sweet Melody","5.95","Mango, melon & strawberry"],["Tropical Delight","5.95","Peach, passionfruit & mango"],["Strawberry Split","5.95","Strawberry & banana"],["Pineapple Cocolada","5.95","Pineapple & coconut"]]}
+  ],
+  drinks:[
+    {t:"Hot Coffee",n:"Locally & ethically roasted, with farm-fresh organic Scottish milk.",items:[
+      ["Espresso","2.60"],["Macchiato","3.00"],["Americano","3.00"],["Cortado","3.20"],["Flat White","3.40"],["Latte","3.50"],["Cappuccino","3.60"],["Mocha","3.80"]]},
+    {t:"Iced Coffee",items:[["Iced Americano","3.40"],["Iced Latte","3.95"],["Iced Mocha","4.20"]]},
+    {t:"Specialty Drinks",items:[["Hot Chocolate","3.60"],["Chai Tea Latte","3.60"],["Hot Matcha Latte","3.95"],["Iced Matcha Latte","4.95"]]},
+    {t:"Tea",items:[["Small Tea","2.95"],["Large Tea","4.50"],["Apple & Cinnamon","3.50"],["Peppermint","3.50"],["Lemon & Ginger","3.50"],["Fruit & Rooibos","3.50"],["Earl Grey","3.50"],["Jasmine Blossom Green","3.50"]]},
+    {t:"Extras · 60p",n:"Oat milk · hazelnut, caramel, vanilla or butterscotch syrup · extra shot · marshmallows & cream",items:[]}
+  ]
+};
+const panels = document.getElementById("panels");
+for (const [key,groups] of Object.entries(MENU)){
+  const p = document.createElement("div");
+  p.className = "menu-panel" + (key==="breakfast"?" active":"");
+  p.id = "panel-"+key; p.setAttribute("role","tabpanel");
+  p.innerHTML = groups.map(g=>`
+    <div class="menu-group">
+      <h3>${g.t}</h3>${g.n?`<p class="note">${g.n}</p>`:""}
+      ${g.items.map(([name,price,desc,veg])=>`
+        <div class="item"><div class="item-row"><b>${name}${veg?'<span class="veg">V</span>':''}</b><span class="dots"></span><span class="price">£${price}</span></div>${desc?`<small>${desc}</small>`:""}</div>`).join("")}
+    </div>`).join("");
+  panels.appendChild(p);
+}
+document.querySelectorAll(".tab").forEach(tab=>tab.addEventListener("click",()=>{
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected","false"));
+  tab.setAttribute("aria-selected","true");
+  document.querySelectorAll(".menu-panel").forEach(p=>p.classList.remove("active"));
+  document.getElementById("panel-"+tab.dataset.tab).classList.add("active");
+}));
+
+/* ---------- NAV + REVEAL ---------- */
+const burger=document.getElementById("burger"), links=document.getElementById("navLinks");
+burger.addEventListener("click",()=>{const o=links.classList.toggle("open");burger.setAttribute("aria-expanded",o)});
+links.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>links.classList.remove("open")));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+document.getElementById("yr").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
